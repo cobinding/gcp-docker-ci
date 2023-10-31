@@ -1,0 +1,13 @@
+# base image 설정
+
+# maven
+FROM maven:3.8.1-jdk-11-openj9
+WORKDIR /app
+RUN mvn install
+
+#jdk
+FROM openjdk:17-alpine
+COPY ./*.jar  /app.jar
+ENTRYPOINT ["java", "-jar", "/app.jar"]
+
+# read
