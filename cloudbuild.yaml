@@ -1,22 +1,28 @@
-
-# Docker
-
 steps:
+  - name: "Build the Docker image"
+    id: "build"
+    command:
+      - "docker"
+      - "build"
+      - "-t"
+      - "gcr.io/quixotic-skill-402605/test-image:tag1"
+      - "."
 
-  # Build the container image
-  - name: 'gcr.io/cloud-builders/build'
-    args: ['build', '-t', '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_SERVICE_NAME}:${_IMAGE_TAG}', '.']
+  - name: "Push the Docker image to Container Registry"
+    id: "push"
+    command:
+      - "docker"
+      - "push"
+      - "gcr.io/quixotic-skill-402605/test-image:tag1"
 
-  # Push the container image to Artifact Registry
-  - images:
-      - '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_SERVICE_NAME}:${_IMAGE_TAG}'
-
-  # Deploy Container Image to Cloud Run
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: gcloud
-    args: ['run', 'deploy', '${SERVICE_NAME}', '--image', 'gcr.io/$PROJECT_ID/${_SERVICE_NAME}:${_IMAGE_TAG}', '--region', '${_REGION}']
-
-substitutions:
-  _REGION: us-west1-b
-  _SERVICE_NAME: testing  # Cloud Run Service 이름
-  _IMAGE_TAG: latest
+  - name: "Deploy the Docker image to Cloud Run"
+    id: "deploy"
+    command:
+      - "gcloud"
+      - "run" 
+      - "deploy"
+      - "test-image"
+      - "-c"
+      - "gcr.io/quixotic-skill-402605/test-image:tag1"
+      - "-r"
+      - "us-west1"
