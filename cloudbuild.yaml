@@ -1,28 +1,28 @@
+# Docker
+
 steps:
-  - name: "Build the Docker image"
-    id: "build"
-    command:
-      - "docker"
-      - "build"
-      - "-t"
-      - "gcr.io/quixotic-skill-402605/test-image:tag1"
-      - "."
 
-  - name: "Push the Docker image to Container Registry"
-    id: "push"
-    command:
-      - "docker"
-      - "push"
-      - "gcr.io/quixotic-skill-402605/test-image:tag1"
+  # Build the container image
+  - name: 'gcr.io/cloud-builders/docker'
+    #
+    args: ['build', '-t', '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REGISTRY}/{_DOCKER_IMAGE}', '.']
 
-  - name: "Deploy the Docker image to Cloud Run"
-    id: "deploy"
-    command:
-      - "gcloud"
-      - "run"
-      - "deploy"
-      - "test-image2"
-      - "-c"
-      - "gcr.io/quixotic-skill-402605/test-image:tag1"
-      - "-r"
-      - "us-west1"
+  # Push the container image to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', '{_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REGISTRY}/{_DOCKER_IMAGE}', '.']
+
+    # Deploy Container Image to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args: [ 'compute', 'instances', 'create-with-container', 'server-1', '--container-image', 'us-central1-docker.pkg.dev/${PROJECT_ID}/${_REGISTRY}/{_DOCKER_IMAGE}' ]
+    env:
+      - 'CLOUDSDK_COMPUTE_REGION=us-west1'
+      - 'CLOUDSDK_COMPUTE_ZONE=us-west1-b'
+substitutions:
+  # 배포하는 Cloud Run 서비스의 리전
+  _REGION: us-west1
+  # 배포하는 Cloud Run Service 이름
+ #  _SERVICE_NAME: testing  # Cloud Run Service 이름
+  # Container Registry
+#   _IMAGE_TAG: latest
+#   _PROJECT_ID: quixotic-skill-402605
