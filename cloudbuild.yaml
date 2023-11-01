@@ -1,5 +1,3 @@
-# Docker
-
 steps:
 
   # Build the container image
@@ -9,24 +7,22 @@ steps:
 
   # Push the container image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-west1-docker.pkg.dev/quixotic-skill-402605/test/changtalk-reg', '.']
+    args: ['push', 'us-west1-docker.pkg.dev/quixotic-skill-402605/test/changtalk-reg']
 
-    # Deploy Container Image to Cloud Run
+  # Deploy Container Image to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
-    args: [ 'compute', 'instances', 'create-with-container', 'server-1', '--container-image', 'us-central1-docker.pkg.dev/us-west1-docker.pkg.dev/quixotic-skill-402605/test/changtalk-reg' ]
-    env:
-      - 'CLOUDSDK_COMPUTE_REGION=us-west1'
-      - 'CLOUDSDK_COMPUTE_ZONE=us-west1-b'
+    args: [ 'compute', 'instances', 'create-with-container', 'server-1', '--container-image', '${_REGION}-docker.pkg.dev/quixotic-skill-402605/test/changtalk-reg']
 
+###### LOG OPTIONS #######
 options:
   logging: CLOUD_LOGGING_ONLY
 
+###### substitutions #######
 substitutions:
-  # 배포하는 Cloud Run 서비스의 리전
   _REGION: us-west1
-  # 배포하는 Cloud Run Service 이름
- #  _SERVICE_NAME: testing  # Cloud Run Service 이름
-  # Container Registry
-#   _IMAGE_TAG: latest
-#   _PROJECT_ID: quixotic-skill-402605
+  _PROJECT_ID: quixotic-skill-402605
+  _REGISTRY: test
+  _DOCKER_IMAGE: changtalk-reg
+
+
