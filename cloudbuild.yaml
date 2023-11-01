@@ -5,23 +5,23 @@ steps:
   # Build the container image
   - name: 'gcr.io/cloud-builders/docker'
     #
-    args: ['build', '-t', '${_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REGISTRY}/{_DOCKER_IMAGE}', '.']
+    args: ['build', '-t', 'us-west1-docker.pkg.dev/quixotic-skill-402605/test/changtalk/test', '.']
 
   # Push the container image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', '{_REGION}-docker.pkg.dev/${_PROJECT_ID}/${_REGISTRY}/{_DOCKER_IMAGE}', '.']
+    args: ['push', 'us-west1-docker.pkg.dev/quixotic-skill-402605/test/changtalk/test', '.']
 
     # Deploy Container Image to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
-    args: [ 'compute', 'instances', 'create-with-container', 'server-1', '--container-image', 'us-central1-docker.pkg.dev/${PROJECT_ID}/${_REGISTRY}/{_DOCKER_IMAGE}' ]
+    args: [ 'compute', 'instances', 'create-with-container', 'server-1', '--container-image', 'us-central1-docker.pkg.dev/quixotic-skill-402605/test/changtalk/test}' ]
     env:
       - 'CLOUDSDK_COMPUTE_REGION=us-west1'
       - 'CLOUDSDK_COMPUTE_ZONE=us-west1-b'
 
 options:
   logging: CLOUD_LOGGING_ONLY
-  
+
 substitutions:
   # 배포하는 Cloud Run 서비스의 리전
   _REGION: us-west1
