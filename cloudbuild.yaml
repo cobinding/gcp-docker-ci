@@ -19,7 +19,7 @@ steps:
     id: "deploy"
     command:
       - "gcloud"
-      - "run" 
+      - "run"
       - "deploy"
       - "test-image"
       - "-c"
