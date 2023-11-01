@@ -21,7 +21,7 @@ steps:
       - "gcloud"
       - "run"
       - "deploy"
-      - "test-image"
+      - "test-image2"
       - "-c"
       - "gcr.io/quixotic-skill-402605/test-image:tag1"
       - "-r"
