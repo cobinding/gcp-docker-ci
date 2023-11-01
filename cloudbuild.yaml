@@ -19,6 +19,9 @@ steps:
       - 'CLOUDSDK_COMPUTE_REGION=us-west1'
       - 'CLOUDSDK_COMPUTE_ZONE=us-west1-b'
 
+options:
+  logging: CLOUD_LOGGING_ONLY
+  
 substitutions:
   # 배포하는 Cloud Run 서비스의 리전
   _REGION: us-west1
