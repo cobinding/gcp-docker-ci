@@ -15,7 +15,7 @@ steps:
 
   # 3. Cloud Run 동작
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['run', 'deploy', 'changtalk-run', '--image', 'gcr.io/${PROJECT_ID}/changtalk-run:${COMMIT_SHA}', '--region', '${REGION}']
+    args: ['run', 'deploy', 'changtalk-run', '--image', 'gcr.io/${PROJECT_ID}/changtalk-run:${COMMIT_SHA}', '--region', '${LOCATION}']
 
 images:
   - 'gcr.io/${PROJECT_ID}/changtalk-run:${COMMIT_SHA}'
