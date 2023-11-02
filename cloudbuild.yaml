@@ -6,12 +6,19 @@ steps:
 
   # 1. 도커 이미지 빌드
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-west1-docker.pkg.dev/quixotic-skill-402605/test/changtalk/test:latest', '--build-arg=JAR_FILE=target/docker-cicd-test-0.0.1-SNAPSHOT.jar', '.']
+    args: ['build', '-t', 'us-west1-docker.pkg.dev/${PROJECT_ID}/test/changtalk/test:latest', '--build-arg=JAR_FILE=target/docker-cicd-test-0.0.1-SNAPSHOT.jar', '.']
 
   # 2. Artifact Registry에 푸시하는 단계
   - name: 'gcr.io/cloud-builders/docker'
     args: [ 'push',
             'us-west1-docker.pkg.dev/${PROJECT_ID}/test/changtalk/test:latest' ]
+
+  # 3. Cloud Run 동작
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['run', 'deploy', 'changtalk-run', '--image', 'gcr.io/${PROJECT_ID}/changtalk-run:${COMMIT_SHA}', '--region', '${REGION}']
+
+images:
+  - 'gcr.io/${PROJECT_ID}/changtalk-run:${COMMIT_SHA}'
 
 options:
   logging: CLOUD_LOGGING_ONLY
