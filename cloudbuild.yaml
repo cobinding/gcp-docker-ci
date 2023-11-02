@@ -6,7 +6,7 @@ steps:
 
   # 1. 도커 이미지 빌드
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-west1-docker.pkg.dev/quixotic-skill-402605/test/changtalk/test:latest', '.']
+    args: ['build', '-t', 'us-west1-docker.pkg.dev/quixotic-skill-402605/test/changtalk/test:latest', '--build-arg=JAR_FILE=target/hello-spring-1.0.0.jar', '.']
 
   # 2. Artifact Registry에 푸시하는 단계
   - name: 'gcr.io/cloud-builders/docker'
