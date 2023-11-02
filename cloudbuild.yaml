@@ -2,16 +2,16 @@ steps:
 
   # Build the container image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', '--platform=linux/amd64', 'us-west1-docker.pkg.dev/quixotic-skill-402605/test/changtalk-reg', '.']
+    args: ['build', '-t', '--platform=linux/amd64', 'us-west1-docker.pkg.dev/quixotic-skill-402605/test/changtalk-reg-update', '.']
 
   # Push the container image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-west1-docker.pkg.dev/quixotic-skill-402605/test/changtalk-reg']
+    args: ['push', 'us-west1-docker.pkg.dev/quixotic-skill-402605/test/changtalk-reg-update']
 
   # Deploy Container Image to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
-    args: [ 'compute', 'instances', 'create-with-container', 'server-1', '--container-image', '${_REGION}-docker.pkg.dev/quixotic-skill-402605/test/changtalk-reg']
+    args: [ 'compute', 'instances', 'create-with-container', 'server-1', '--container-image', '${_REGION}-docker.pkg.dev/quixotic-skill-402605/test/changtalk-reg-update']
 
 ###### LOG OPTIONS #######
 options:
