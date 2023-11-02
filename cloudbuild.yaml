@@ -1,4 +1,8 @@
 steps:
+  # mvn 설치
+  - name: 'maven:3'
+    entrypoint: mvn
+    args: ['mvn', 'clean', 'package']
   # 1. 도커 이미지 빌드
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'us-west1-docker.pkg.dev/quixotic-skill-402605/test/changtalk/test:latest', '.']
