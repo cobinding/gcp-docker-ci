@@ -3,6 +3,7 @@ steps:
   - name: maven:3.8.1-openjdk-17
     entrypoint: mvn
     args: ['package','-Dmaven.test.skip=true' ]
+
   # 1. 도커 이미지 빌드
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'us-west1-docker.pkg.dev/quixotic-skill-402605/test/changtalk/test:latest', '.']
