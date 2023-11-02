@@ -2,8 +2,7 @@ steps:
 
   # Build the container image
   - name: 'gcr.io/cloud-builders/docker'
-    #
-    args: ['build', '-t', 'us-west1-docker.pkg.dev/quixotic-skill-402605/test/changtalk-reg', '.']
+    args: ['build', '-t', '--platform=linux/amd64', 'us-west1-docker.pkg.dev/quixotic-skill-402605/test/changtalk-reg', '.']
 
   # Push the container image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
