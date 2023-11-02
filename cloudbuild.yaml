@@ -12,3 +12,4 @@ steps:
     args: [ 'push',
             'us-west1-docker.pkg.dev/${PROJECT_ID}/test/changtalk/test:latest' ]
 
+

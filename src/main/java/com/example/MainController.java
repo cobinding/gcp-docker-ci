@@ -14,7 +14,5 @@ public class MainController {
         return "helloWorld";
     }
 
-    // ***
-
-    /// build test 2
+    // api 등록 후 build 테스트
 }
