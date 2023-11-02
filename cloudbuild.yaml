@@ -2,16 +2,16 @@ steps:
 
   # Build the container image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', '--platform=linux/amd64', 'us-west1-docker.pkg.dev/us-west1-docker.pkg.dev/quixotic-skill-402605/test/us-west1-docker.pkg.dev/quixotic-skill-402605/test/changtalk-reg', '.']
+    args: ['build', '-t', '-f', 'us-west1-docker.pkg.dev//quixotic-skill-402605/test/changtalk-reg', '.']
 
   # Push the container image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-west1-docker.pkg.dev/us-west1-docker.pkg.dev/quixotic-skill-402605/test/us-west1-docker.pkg.dev/quixotic-skill-402605/test/changtalk-reg']
+    args: ['push', 'us-west1-docker.pkg.dev/quixotic-skill-402605/test/changtalk-reg']
 
   # Deploy Container Image to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
-    args: [ 'compute', 'instances', 'create-with-container', 'server-1', '--container-image', 'us-west1-docker.pkg.dev/us-west1-docker.pkg.dev/quixotic-skill-402605/test/us-west1-docker.pkg.dev/quixotic-skill-402605/test/changtalk-reg']
+    args: [ 'compute', 'instances', 'create-with-container', 'server-1', '--container-image', '${_REGION}-docker.pkg.dev/quixotic-skill-402605/test/changtalk-reg']
 
 ###### LOG OPTIONS #######
 options:
@@ -20,8 +20,8 @@ options:
 ###### substitutions #######
 substitutions:
   _REGION: us-west1
-  _PROJECT_ID: quixotic-skill-402605
-  _REGISTRY: test
-  _DOCKER_IMAGE: changtalk-reg
+ #  _PROJECT_ID: quixotic-skill-402605
+ #  _REGISTRY: test
+ #  _DOCKER_IMAGE: changtalk-reg
 
 
