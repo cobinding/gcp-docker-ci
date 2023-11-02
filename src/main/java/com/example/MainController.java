@@ -11,7 +11,7 @@ public class MainController {
 
     @GetMapping("hello")
     public String getHello() {
-        return "helloWorld";
+        return "dddddddddd";
     }
 
     // api 등록 후 build 테스트
