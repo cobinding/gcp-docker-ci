@@ -14,7 +14,8 @@ steps:
             'us-west1-docker.pkg.dev/${PROJECT_ID}/test/changtalk/test:latest' ]
 
   # 3. Cloud Run 동작
-  - name: 'gcr.io/cloud-builders/docker'
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
     args: ['run', 'deploy', 'changtalk-run', '--image', 'gcr.io/${PROJECT_ID}/changtalk-run:${COMMIT_SHA}', '--region', '${LOCATION}']
 
 images:
