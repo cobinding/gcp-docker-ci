@@ -11,11 +11,9 @@ public class MainController {
 
     @GetMapping("hello")
     public String getHello() {
-        return "dddddddddd";
+        return "hi";
     }
 
-    // api 등록 후 build 테스트
 
-    // 리전 변경 3
 
 }
