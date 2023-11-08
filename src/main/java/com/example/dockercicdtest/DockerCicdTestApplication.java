@@ -11,7 +11,7 @@ public class DockerCicdTestApplication {
 
     @GetMapping("/")
     public String hello() {
-        return "hello world";
+        return "hello world 수정수정버전입니다";
     }
     public static void main(String[] args) {
         SpringApplication.run(DockerCicdTestApplication.class, args);
