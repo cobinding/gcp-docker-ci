@@ -1,8 +1,9 @@
+---
 steps:
   # mvn 설치
-  - name: maven:3.8.1-openjdk-17
-    entrypoint: mvn
-    args: ['package','-Dmaven.test.skip=true' ]
+ #  - name: maven:3.8.1-openjdk-17
+ #    entrypoint: mvn
+ #    args: ['package','-Dmaven.test.skip=true' ]
 
   # 1. 도커 이미지 빌드
   - name: 'gcr.io/cloud-builders/docker'
@@ -12,7 +13,6 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: [ 'push',
             'us-west1-docker.pkg.dev/${PROJECT_ID}/test/changtalk/test:latest' ]
-
   # 3. Cloud Run 동작
  #  - name: 'gcr.io/cloud-builders/gcloud'
  # ㅌ   script: |
