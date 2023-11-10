@@ -1,9 +1,9 @@
 ---
 steps:
   # mvn 설치
- #  - name: maven:3.8.1-openjdk-17
- #    entrypoint: mvn
- #    args: ['package','-Dmaven.test.skip=true' ]
+  - name: maven:3.8.1-openjdk-17
+    entrypoint: mvn
+    args: ['package','-Dmaven.test.skip=true' ]
 
   # 1. 도커 이미지 빌드
   - name: 'gcr.io/cloud-builders/docker'
