@@ -1,7 +1,7 @@
 steps:
   # clone common
   - name: 'gcr.io/changtalk/git'
-    args: ['clone', 'https://github.com/cobinding/gcp-docker-ci-cd.git']
+    args: ['clone', 'https://sebin-chu@bitbucket.org/changtalk-local-test/cloudtest.git']
 
   - name: 'maven:3.8.1-openjdk-17'
     entrypoint: mvn
