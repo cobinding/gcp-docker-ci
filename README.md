@@ -24,5 +24,6 @@
 <p>&nbsp;</p>
 
 ## 관련 문서
-<a href="https://cobinding.tistory.com/238>yaml 파일 관련 팁</a>
-<a href="https://cobinding.tistory.com/217>Docker와 GCP Cloud Build & Cloud Run으로 CI/CD 구성하기</a>
+- yaml 파일 관련 팁(https://cobinding.tistory.com/238)
+- Docker와 GCP Cloud Build & Cloud Run으로 CI/CD 구성하기(https://cobinding.tistory.com/217)
+
