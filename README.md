@@ -9,11 +9,17 @@
 1. 빌드된 패키지를 Docker 컨테이너화하여 Artifact Registry에 저장
 2. MVN 패키지화 후 Artifact Registry에 저장
 
+<p>&nbsp;</p>
+
 ## 주의사항
 위 두 가지에 대해서 각각 cloudbuild-docker.yaml, cloudbuild-mvn.yaml에 세팅파일의 예제가 담겨있다.
+
 <br>
+
 실제로 yaml파일의 이름은 정확히 cloudbuild.yaml이어야하므로 이를 참고하여 필요한 yaml을 작성한다면 도움이 될 것이다.
-<br> 또는, cloudbuild.yaml을 따로 생성하지 않고, GCP Cloud Build의 "인라인 작성" 방식을 활용하면 된다.
+<br> 
+
+또는, cloudbuild.yaml을 따로 생성하지 않고, GCP Cloud Build의 "인라인 작성" 방식을 활용하면 된다.
 
 <p>&nbsp;</p>
 
