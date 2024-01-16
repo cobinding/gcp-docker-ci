@@ -1,0 +1,17 @@
+steps:
+  - name: 'maven:3.8.4-openjdk-17'
+    args:
+      - clean
+      - install
+      - '-Dmaven.test.skip=true'
+    entrypoint: mvn
+  - name: 'maven:3.8.4-openjdk-17'
+    args:
+      - clean
+      - package
+    entrypoint: mvn
+  - name: gcr.io/cloud-builders/mvn
+    args:
+      - deploy
+options:
+  logging: CLOUD_LOGGING_ONLY
