@@ -17,3 +17,9 @@ steps:
 	- name: 'node'
 		entrypoint: 'yarn'
 		args: ['build']
+
+# 저장소에 업로드
+artifacts:
+    npmPackages:
+    - repository: 'GCP AR 경로'
+      packagePath: '로컬 디렉토리의 절대 경로'
