@@ -1,0 +1,19 @@
+steps:
+# yarn 버전 3 설치
+	- name: 'yarn:3.6.4'
+		entrypoint: 'yarn'
+		args: ['install']
+
+# yarn 실행 
+	- name: 'node'
+		entrypoint: 'yarn'
+
+	# package.json setup
+	- name: 'node'
+		entrypoint: 'yarn'
+		args: ['setup']
+
+	# package.json build
+	- name: 'node'
+		entrypoint: 'yarn'
+		args: ['build']
